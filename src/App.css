@@ -1,0 +1,22 @@
+body {
+  background-image: url(./images/3801184.jpg);
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+form {
+  margin-top: 25%;
+  margin-left: 25%;
+  margin-right:25%;
+  width: 50%;
+}
+
+label {
+  color: black;
+  font-weight: bold;
+  width: 150px;
+  float: left;
+  font-size: 25px;
+  }
+
