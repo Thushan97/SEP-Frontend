@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
-//import Image from '../images/forest.jpg';
+import '../style/loginStyle.css'
 
 class LoginForm extends Form {
     state = {
@@ -28,7 +28,8 @@ class LoginForm extends Form {
     render() { 
         const { data, errors } = this.state;
         return (
-            <div className="form">
+            <div className="loginback">
+                <div className="form">
                 <form className="loginForm" onSubmit={this.handleSubmit}>
                 
                     <div className="form-group">
@@ -65,8 +66,10 @@ class LoginForm extends Form {
 
                     <button disabled={this.validate()} className="btn btn-primary">Login</button>
                 </form>
-            </div> 
-            
+                </div> 
+            </div>
+                
+           
          );
     }
 }

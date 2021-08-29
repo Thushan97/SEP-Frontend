@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
 
+
 class RegisterForm extends Form {
     state = {
         data: { username: "", password: "", name: ""},
