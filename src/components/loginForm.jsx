@@ -28,7 +28,7 @@ class LoginForm extends Form {
     render() { 
         const { data, errors } = this.state;
         return (
-            <div className="loginback">
+            <div className="loginBackground">
                 <div className="form">
                 <form className="loginForm" onSubmit={this.handleSubmit}>
                 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
-
+import '../style/loginStyle.css';
 
 class RegisterForm extends Form {
     state = {
@@ -29,7 +29,8 @@ class RegisterForm extends Form {
     render() { 
         const { data, errors } = this.state;
         return (
-            <div className="form">
+            <div className="loginBackground">
+                <div className="form">
                 {/* <h1>Register</h1> */}
                 <form className="registerForm" onSubmit={this.handleSubmit}>
 
@@ -81,6 +82,8 @@ class RegisterForm extends Form {
                     <button disabled={this.validate()} className="btn btn-primary">Register</button>
                 </form>
             </div> 
+            </div>
+            
             
          );
     }
