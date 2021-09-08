@@ -7,6 +7,7 @@ import Sidebar from './components/sidebar/sidebar';
 import UserList from './pages/userList/userList';
 import User from './pages/user/user';
 import './App.css';
+import NewUser from './pages/newUser/newUser';
 
 function App() {
   return (
@@ -38,6 +39,15 @@ function App() {
               <div className="containers">
                 <Sidebar />
                 <User />
+              </div>
+            </div>
+          } />
+          <Route path='/systemAdmin/newUser' render={props =>
+            <div>
+              <Topbar />
+              <div className="containers">
+                <Sidebar />
+                <NewUser/>
               </div>
             </div>
           } />

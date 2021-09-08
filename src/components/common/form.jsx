@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import Joi from 'joi-browser';
 
 class Form extends Component {
@@ -28,7 +28,7 @@ class Form extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const username = this.username.current.value;
+        //const username = this.username.current.value;
 
         const errors = this.validate();
        

@@ -12,6 +12,8 @@
     padding-top: 15%;
     padding-left: 30%;
     padding-right: 30%;
+    display: flex;
+    flex-direction: column;
   }
   
   label {
@@ -20,4 +22,38 @@
     width: 150px;
     float: left;
     font-size: 25px;
-    }
+  }
+
+.loginForgot {
+    margin-top: 10px;
+    text-align: center;
+    color: red;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.loginButton {
+  margin-top: 15px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: #1775ee;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.loginRegisterButton {
+  width: 30%;
+  align-self: center;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: #42b72a;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}

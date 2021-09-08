@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
-import '../style/loginStyle.css'
+import '../style/loginStyle.css';
+import { Link } from 'react-router-dom';
 
 class LoginForm extends Form {
     state = {
@@ -65,6 +66,15 @@ class LoginForm extends Form {
                     </div>
 
                     <button disabled={this.validate()} className="btn btn-primary">Login</button>
+
+                    <span className="loginForgot">Forgot Password?</span>
+
+                    <Link to="/register">
+                        <button className="loginRegisterButton">
+                            Create a New Account
+                        </button>
+                    </Link>
+                    
                 </form>
                 </div> 
             </div>

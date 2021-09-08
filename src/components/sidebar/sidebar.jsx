@@ -1,5 +1,6 @@
 import '../../style/sidebar.css';
 import {Nature, Group, Assessment, Feedback, Chat} from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 export default function Sidebar(){
     return(
@@ -17,11 +18,12 @@ export default function Sidebar(){
 
                     <h3 className="sidebarTitle">Quick Menu</h3>
                     <ul className="sidebarList">
-                        <li className="sidebarListItem active">
-                            <Group className="sidebarIcon"/>
-                            Users
+                        <Link to="/systemAdmin/users">
+                            <li className="sidebarListItem active">
+                                <Group className="sidebarIcon"/>
+                                Users
                         </li>
-
+                        </Link>
                         <li className="sidebarListItem active">
                             <Assessment className="sidebarIcon"/>
                             Reports
