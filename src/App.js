@@ -6,8 +6,9 @@ import Topbar from './components/topBar/Topbar';
 import Sidebar from './components/sidebar/sidebar';
 import UserList from './pages/userList/userList';
 import User from './pages/user/user';
-import './App.css';
 import NewUser from './pages/newUser/newUser';
+import RenderMap from './views/systemAdmin/map';
+import './App.css';
 
 function App() {
   return (
@@ -48,6 +49,15 @@ function App() {
               <div className="containers">
                 <Sidebar />
                 <NewUser/>
+              </div>
+            </div>
+          } />
+          <Route path='/systemAdmin/createForest' render={props =>
+            <div>
+              <Topbar />
+              <div className="containers">
+                <Sidebar />
+                <RenderMap />
               </div>
             </div>
           } />
