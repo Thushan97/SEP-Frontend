@@ -1,29 +1,39 @@
 import React from 'react';
-import Joi from 'joi-browser';
+import Joi, { errors } from 'joi-browser';
 import Form from './common/form';
 import '../style/loginStyle.css';
+import { api } from '../services/api';
 
 class RegisterForm extends Form {
     state = {
-        data: { username: "", password: "", name: ""},
+        data: { email: "", password: "", name: ""},
         errors: {}
     };
 
     schema = {
-        username: Joi.string().required().label("Username"),
-        password: Joi.string().required().label("Password"),
-        name: Joi.string().required().label("Name")
+        email: Joi.string().required().email().label("Email"),
+        password: Joi.string().required().min(8).label("Password"),
+        name: Joi.string().required().min(3).label("Name")
     };
 
-    username = React.createRef();
+    email = React.createRef();
 
     // componentDidMount(){
-    //     this.username.current.focus();
+    //     this.email.current.focus();
     // }
 
-    doSubmit = () =>{
+    doSubmit = async () =>{
         // call the server
-        console.log("Submitted");
+        try{
+            const response = await api.auth.register(this.state.data);
+        }
+        catch (ex) {
+            if(ex.response && ex.response.status === 400){
+                const errors = {...this.state.errors};
+                errors.email = ex.response.data;
+                this.setState({ errors });
+            }
+        }
     }
 
     render() { 
@@ -49,18 +59,18 @@ class RegisterForm extends Form {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="email">Username</label>
                         <input 
-                            ref={this.username} 
-                            value={data.username}
+                            ref={this.email} 
+                            value={data.email}
                             onChange={this.handleChange}
-                            id="username" 
-                            name="username"
+                            id="email" 
+                            name="email"
                             type="text" 
                             className="form-control" 
                             placeholder="Username"/>
-                        {errors.username && <div className="alert alert-danger">
-                            {errors.username}
+                        {errors.email && <div className="alert alert-danger">
+                            {errors.email}
                         </div>}
                     </div>
 

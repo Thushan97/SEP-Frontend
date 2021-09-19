@@ -12,7 +12,7 @@ export default function Sidebar(){
                     <ul className="sidebarList">
                         <li className="sidebarListItem active">
                             <Nature className="sidebarIcon"/>
-                            Create Forest
+                            Register Forest
                         </li>
                     </ul>
 

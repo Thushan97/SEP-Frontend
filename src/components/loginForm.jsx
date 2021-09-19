@@ -3,6 +3,7 @@ import Joi from 'joi-browser';
 import Form from './common/form';
 import '../style/loginStyle.css';
 import { Link } from 'react-router-dom';
+import { api } from './../services/api';
 
 class LoginForm extends Form {
     state = {
@@ -21,10 +22,11 @@ class LoginForm extends Form {
     //     this.username.current.focus();
     // }
 
-    doSubmit = () =>{
-        // call the server
-        console.log("Submitted");
+    doSubmit = async () =>{
+        const response = await api.auth.login(this.state.data);
+        
     }
+
 
     render() { 
         const { data, errors } = this.state;
@@ -44,7 +46,8 @@ class LoginForm extends Form {
                             name="username"
                             type="text" 
                             className="form-control" 
-                            placeholder="Username"/>
+                            placeholder="Username"
+                        />
                         {errors.username && <div className="alert alert-danger">
                             {errors.username}
                         </div>}
@@ -82,6 +85,7 @@ class LoginForm extends Form {
            
          );
     }
+ 
 }
  
 export default LoginForm;

@@ -8,9 +8,11 @@ import UserList from './pages/userList/userList';
 import User from './pages/user/user';
 import NewUser from './pages/newUser/newUser';
 import RenderMap from './views/systemAdmin/map';
+import PinMap from './views/systemAdmin/pinMap';
 import './App.css';
 
 function App() {
+
   return (
     <React.Fragment>
         <Switch>
@@ -58,6 +60,15 @@ function App() {
               <div className="containers">
                 <Sidebar />
                 <RenderMap />
+              </div>
+            </div>
+          } />
+          <Route path='/systemAdmin/pinMap' render={props =>
+            <div>
+              <Topbar />
+              <div className="containers">
+                <Sidebar />
+                <PinMap />
               </div>
             </div>
           } />

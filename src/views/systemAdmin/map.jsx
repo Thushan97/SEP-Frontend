@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import { EditControl } from 'react-leaflet-draw';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import L from 'leaflet';
+import {api} from '../../services/api';
 
 export default function RenderMap(){
     const [center, setCenter] = useState( { lat: 6.927079, lng: 79.861244} );
@@ -25,7 +26,7 @@ export default function RenderMap(){
         "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png",
     });
 
-    const _onCreate = (e) => {
+    const _onCreate = async (e) => {
 
         const {layerType, layer} = e;
         if( layerType === "polygon"){
@@ -42,6 +43,9 @@ export default function RenderMap(){
             const {_leaflet_id} = layer;
             setMapLayers( (layers) => [...layers, {id: _leaflet_id, latlngs: layer.getLatLngs()[0]}]);
         }
+
+        //api.systemAdmin.getCordinates(mapLayers[0]);
+
     }; 
 
     const _onEdited = (e) => {
@@ -49,6 +53,9 @@ export default function RenderMap(){
         Object.values( _layers ).map( ({ _leaflet_id, editing }) => {
             setMapLayers((layers) => layers.map((l) => l.id === _leaflet_id ? { ...l, latlngs: { ...editing.latlngs[0]}} : l));
         });
+
+        //api.systemAdmin.editCordinates(mapLayers[0]);
+
     };
 
     const _onDeleted = (e) => {
@@ -56,9 +63,11 @@ export default function RenderMap(){
         Object.values(_layers).map(({_leaflet_id}) => {
             setMapLayers((layers) => layers.filter((l) => l.id !== _leaflet_id ));
         });
+
+        //api.systemAdmin.deleteCordinates(mapLayers[0]);
     };
 
-    console.log(mapLayers);
+    console.log(mapLayers[0]);
 
     return(
         <div className="map">
