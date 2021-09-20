@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Popup } from 'react-leaflet';
 import { useState } from 'react';
 import osm from './osmProvider';
 import '../../style/map.css';
@@ -7,7 +7,8 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import L from 'leaflet';
 import '../../style/pinMap.css';
-import {format} from 'timeago.js';
+import {Link} from 'react-router-dom';
+import { CodeSharp } from '@material-ui/icons';
 
 export default function PinMap(){
     const [center, setCenter] = useState( { lat: 6.927079, lng: 79.861244} );
@@ -30,22 +31,22 @@ export default function PinMap(){
     });
 
     const handleAddClick = (e) => {
-        console.log(e.latlng);
+        //console.log(e.latlng);
         const {lat, lng} = e.latlng;
         setNewPlace({lat, lng});
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const newPin = {
-            name,
-            district,
-            country,
-            lat: newPlace.lat,
-            lng: newPlace.lng
-        }
-    }
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const newPin = {
+    //         name,
+    //         district,
+    //         country,
+    //         lat: newPlace.lat,
+    //         lng: newPlace.lng
+    //     }
+    //     setNewPlace(null);
+    // }
 
     return(
         <div className="map">
@@ -68,7 +69,7 @@ export default function PinMap(){
                 {newPlace && (
                     <Popup position={newPlace} >
                         <div className="card">
-                            <form className="detailsForm" onSubmit={handleSubmit}>
+                            <form className="detailsForm">
                                 <label className="details">Forest Name</label>
                                 <input className="detailsInput" placeholder="Enter Name" onChange={(e) => setName(e.target.value)}/>
                                 <label className="details">District</label>
@@ -76,7 +77,17 @@ export default function PinMap(){
                                 <label className="details">Country</label>
                                 <input className="detailsInput" placeholder="Enter Country" onChange={(e) => setCountry(e.target.value)}/>
                                 
-                                <button className="submitButton" type="submit">Add Pin</button>
+                                {/* <Link to={`/systemAdmin/createForest/${name}`}>
+                                    <button className="submitButton" type="submit">Add Pin</button>
+                                </Link> */}
+
+                                <Link to={{
+                                            pathname:'/systemAdmin/createForest',
+                                            state: {name, district, country, newPlace}  
+                                            }}>
+                                            <button className="submitButton" type="submit">Add Pin</button>
+                                </Link>
+
                             </form>
                             
                         </div>

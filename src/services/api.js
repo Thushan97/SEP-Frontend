@@ -14,14 +14,8 @@ export const registerAccessToken = (token) => {
 
 export const api = {
     systemAdmin : {
-        getCordinates: async (data) => {
-            return await getInstance().post('',data);
-        },
-        editCordinates: async (data) => {
-            return await getInstance().put('',data);
-        },
-        deleteCordinates: async (data) => {
-            return await getInstance().delete('',data);
+        registerForest: async (data) => {
+            return await getInstance().post('register/forest',data);
         }
     },
 

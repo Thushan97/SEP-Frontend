@@ -7,9 +7,9 @@
 }
 
 .details{
-    color: tomato;
+    color: green;
     font-size: 13px;
-    border-bottom: 1px solid tomato;
+    border-bottom: 1px solid green;
     margin: 3px 0;
 }
 
@@ -34,10 +34,11 @@
 }
 
 .submitButton{
+    width: 100px;
     border: none;
     padding: 5px;
     border-radius: 5px;
     color: white;
-    background-color: tomato;
+    background-color: green;
     cursor: pointer;
 }

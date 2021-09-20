@@ -1,5 +1,5 @@
 import React from 'react';
-import Joi, { errors } from 'joi-browser';
+import Joi from 'joi-browser';
 import Form from './common/form';
 import '../style/loginStyle.css';
 import { api, registerAccessToken } from '../services/api';
