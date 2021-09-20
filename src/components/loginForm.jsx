@@ -3,28 +3,41 @@ import Joi from 'joi-browser';
 import Form from './common/form';
 import '../style/loginStyle.css';
 import { Link } from 'react-router-dom';
-import { api } from './../services/api';
+import { api, registerAccessToken } from './../services/api';
 
 class LoginForm extends Form {
     state = {
-        data: { username: "", password: ""},
+        data: { email: "", password: ""},
         errors: {}
     };
 
     schema = {
-        username: Joi.string().required().label("Username"),
-        password: Joi.string().required().label("Password")
+        email: Joi.string().required().email().label("Email"),
+        password: Joi.string().required().min(8).label("Password")
     };
 
-    username = React.createRef();
+    email = React.createRef();
 
     // componentDidMount(){
-    //     this.username.current.focus();
+    //     this.email.current.focus();
     // }
 
     doSubmit = async () =>{
-        const response = await api.auth.login(this.state.data);
-        
+        try{
+            const response = await api.auth.login(this.state.data);
+            console.log(response.data.access_token);
+            sessionStorage.setItem("token", response.data.access_token);
+            registerAccessToken(response.data.access_token);
+            this.props.history.push("/systemAdmin");
+            
+        }
+        catch (ex){
+            if(ex.response && ex.response.status === 400){
+                const errors = {...this.state.errors};
+                errors.email = "Invalid email or password!";
+                this.setState({ errors });
+            }
+        } 
     }
 
 
@@ -37,19 +50,19 @@ class LoginForm extends Form {
                 
                     <div className="form-group">
                   
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="email">Username</label>
                         <input 
-                            ref={this.username} 
-                            value={data.username}
+                            ref={this.email} 
+                            value={data.email}
                             onChange={this.handleChange}
-                            id="username" 
-                            name="username"
+                            id="email" 
+                            name="email"
                             type="text" 
                             className="form-control" 
                             placeholder="Username"
                         />
-                        {errors.username && <div className="alert alert-danger">
-                            {errors.username}
+                        {errors.email && <div className="alert alert-danger">
+                            {errors.email}
                         </div>}
                     </div>
 

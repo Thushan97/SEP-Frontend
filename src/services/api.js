@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-
-
 const getInstance = () => {
     const instance = axios.create({
         baseURL: 'http://127.0.0.1:5000/',
@@ -9,6 +7,10 @@ const getInstance = () => {
       });
     return instance; 
 };
+
+export const registerAccessToken = (token) => {
+    axios.defaults.headers["authorization"] = `Bearer ${token}`;
+}
 
 export const api = {
     systemAdmin : {

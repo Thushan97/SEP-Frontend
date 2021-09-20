@@ -35,6 +35,18 @@ export default function PinMap(){
         setNewPlace({lat, lng});
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const newPin = {
+            name,
+            district,
+            country,
+            lat: newPlace.lat,
+            lng: newPlace.lng
+        }
+    }
+
     return(
         <div className="map">
             <Map center = {center} zoom = {ZOOM_LEVEL} ref = {mapRef} ondblclick={handleAddClick}>
@@ -56,13 +68,13 @@ export default function PinMap(){
                 {newPlace && (
                     <Popup position={newPlace} >
                         <div className="card">
-                            <form className="detailsForm">
+                            <form className="detailsForm" onSubmit={handleSubmit}>
                                 <label className="details">Forest Name</label>
-                                <input className="detailsInput" placeholder="Enter Name"/>
+                                <input className="detailsInput" placeholder="Enter Name" onChange={(e) => setName(e.target.value)}/>
                                 <label className="details">District</label>
-                                <input className="detailsInput" placeholder="Enter District"/>
+                                <input className="detailsInput" placeholder="Enter District" onChange={(e) => setDistrict(e.target.value)}/>
                                 <label className="details">Country</label>
-                                <input className="detailsInput" placeholder="Enter Country"/>
+                                <input className="detailsInput" placeholder="Enter Country" onChange={(e) => setCountry(e.target.value)}/>
                                 
                                 <button className="submitButton" type="submit">Add Pin</button>
                             </form>

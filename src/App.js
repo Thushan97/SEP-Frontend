@@ -23,7 +23,8 @@ function App() {
               <Topbar />
               <div className="containers">
                 <Sidebar />
-                <div className="others">Other Pages</div>
+                {/* <div className="others">Other Pages</div> */}
+                <UserList />
               </div>
             </div>
           } />
