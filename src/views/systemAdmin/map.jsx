@@ -8,10 +8,10 @@ import { EditControl } from 'react-leaflet-draw';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import L from 'leaflet';
 import PinMap from './pinMap';
-import {useLocation} from 'react-router-dom'
+import {useLocation, Link} from 'react-router-dom'
 import {api} from '../../services/api';
 
-export default function RenderMap(){
+export default function RenderMap(props){
     let location = useLocation();
       //console.log(location.state.newPlace)
     const [center, setCenter] = useState( { lat: 6.927079, lng: 79.861244} );
@@ -48,8 +48,6 @@ export default function RenderMap(){
             setMapLayers( (layers) => [...layers, {id: _leaflet_id, latlngs: layer.getLatLngs()[0]}]);
         }
 
-        //api.systemAdmin.getCordinates(mapLayers[0]);
-
     }; 
 
     const _onEdited = (e) => {
@@ -57,8 +55,6 @@ export default function RenderMap(){
         Object.values( _layers ).map( ({ _leaflet_id, editing }) => {
             setMapLayers((layers) => layers.map((l) => l.id === _leaflet_id ? { ...l, latlngs: { ...editing.latlngs[0]}} : l));
         });
-
-        //api.systemAdmin.editCordinates(mapLayers[0]);
 
     };
 
@@ -68,7 +64,6 @@ export default function RenderMap(){
             setMapLayers((layers) => layers.filter((l) => l.id !== _leaflet_id ));
         });
 
-        //api.systemAdmin.deleteCordinates(mapLayers[0]);
     };
 
     const arrayMap = () => {
@@ -81,15 +76,14 @@ export default function RenderMap(){
     }
     
 
-    const handleClick = (e) => {
-        e.preventDefault();
+    const handleClick = () => {
 
         const newForest = {
             "name" : location.state.name,
             "district": location.state.district,
             "country": location.state.country,
             "location": [location.state.newPlace.lat, location.state.newPlace.lng],
-            "forest_boundry": {
+            "forest_boundary": {
                 "type" : "Feature Collection",
                 "features": [
                     {
@@ -111,7 +105,8 @@ export default function RenderMap(){
         }
         catch(ex) {
             console.log(ex);
-        }   
+        }
+        
     }
 
     return(
@@ -123,13 +118,17 @@ export default function RenderMap(){
                             circle: false,
                             circlemarker: false,
                             marker: false,
+                            polyline: false
                         }}
                     />
                 </FeatureGroup>
                 <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution}/>
             </Map>
-            <pre className="text-left">{JSON.stringify(mapLayers,0,2)}</pre>
-            <button className="mapSubmitButton" type="submit" onClick={handleClick} >Submit</button>
+
+            <Link to="/systemAdmin">
+                <button className="mapSubmitButton" type="submit" onClick={handleClick} >Submit</button>       
+            </Link>
+            
         </div>
     )
 }

@@ -15,7 +15,7 @@ export const registerAccessToken = (token) => {
 export const api = {
     systemAdmin : {
         registerForest: async (data) => {
-            return await getInstance().post('register/forest',data);
+            return await getInstance().post('forest/register',data);
         }
     },
 
