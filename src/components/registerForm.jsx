@@ -26,13 +26,13 @@ class RegisterForm extends Form {
         // call the server
         try{
             const response = await api.auth.register(this.state.data);
-            sessionStorage.setItem("token", response.data.access_token);
-            console.log(response.data.access_token);
-            registerAccessToken(response.data.access_token);
-            this.props.history.push("/systemAdmin");
+            // sessionStorage.setItem("token", response.data.access_token);
+            // console.log(response.data.access_token);
+            // registerAccessToken(response.data.access_token);
+            this.props.history.push("/login");
         }
         catch (ex) {
-            if(ex.response && ex.response.status === 400){
+            if(ex.response && ex.response.status === 411){
                 const errors = {...this.state.errors};
                 errors.email = ex.response.data;
                 this.setState({ errors });

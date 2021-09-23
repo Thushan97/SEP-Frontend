@@ -8,7 +8,6 @@ import 'leaflet-draw/dist/leaflet.draw.css';
 import L from 'leaflet';
 import '../../style/pinMap.css';
 import {Link} from 'react-router-dom';
-import { CodeSharp } from '@material-ui/icons';
 
 export default function PinMap(){
     const [center, setCenter] = useState( { lat: 6.927079, lng: 79.861244} );
@@ -84,8 +83,8 @@ export default function PinMap(){
                                 <Link to={{
                                             pathname:'/systemAdmin/createForest',
                                             state: {name, district, country, newPlace}  
-                                            }}>
-                                            <button className="submitButton" type="submit">Add Pin</button>
+                                }}>
+                                    <button className="submitButton" type="submit">Add Pin</button>
                                 </Link>
 
                             </form>

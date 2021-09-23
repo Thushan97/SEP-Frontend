@@ -1,0 +1,14 @@
+.date {
+    flex: 1;
+}
+
+.dateSubmitButton{
+    margin-top: 10px;
+    width: 100px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}

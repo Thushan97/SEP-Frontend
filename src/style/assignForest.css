@@ -1,0 +1,44 @@
+.forestCard {
+    width: 250px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.details{
+    color: green;
+    font-size: 13px;
+    border-bottom: 1px solid green;
+    margin: 3px 0;
+}
+
+.detailsForm {
+    margin-top: -20px;
+    margin-left: -20px;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.detailsInput{
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.detailsInput::placeholder{
+    font-size: 12px;
+    color: rgb(172,169,169);
+}
+
+.submitButton{
+    width: 100px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}

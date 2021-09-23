@@ -9,6 +9,9 @@ import User from './pages/user/user';
 import NewUser from './pages/newUser/newUser';
 import RenderMap from './views/systemAdmin/map';
 import PinMap from './views/systemAdmin/pinMap';
+import ForestOfficerSidebar from './views/forestOfficer/sidebar';
+import ForestOfficerTopbar from './views/forestOfficer/topbar';
+import AssignForests from './views/forestOfficer/assisgnForests';
 import './App.css';
 
 function App() {
@@ -73,6 +76,27 @@ function App() {
               </div>
             </div>
           } />
+
+          <Route exact path='/forestOfficer' render={props => 
+            <div>
+              <ForestOfficerTopbar/>
+              <div className="containers">
+                <ForestOfficerSidebar/>
+                <AssignForests />
+              </div>
+            </div>
+          } />
+
+          {/* <Route path='/forestOfficer/forests' render={props => 
+            <div>
+              <ForestOfficerTopbar/>
+              <div className="containers">
+                <ForestOfficerSidebar/>
+                <AssignForests />
+              </div>
+            </div>
+          } /> */}
+
           <Redirect to="/login" /> 
         </Switch>       
     </React.Fragment>  

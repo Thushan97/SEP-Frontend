@@ -25,14 +25,17 @@ class LoginForm extends Form {
     doSubmit = async () =>{
         try{
             const response = await api.auth.login(this.state.data);
-            console.log(response.data.access_token);
-            sessionStorage.setItem("token", response.data.access_token);
-            registerAccessToken(response.data.access_token);
-            this.props.history.push("/systemAdmin");
+            //console.log(response.data.access_token);
+            localStorage.setItem("token", response.data.auth_token);
+            localStorage.setItem("email", response.data.info.email)
+            console.log(localStorage.getItem("email"));
+            //registerAccessToken(response.data.auth_token);
+            const path = response.data.info['userType'];
+            this.props.history.push(`/${path}`);
             
         }
         catch (ex){
-            if(ex.response && ex.response.status === 400){
+            if(ex.response && ex.response.status === 401){
                 const errors = {...this.state.errors};
                 errors.email = "Invalid email or password!";
                 this.setState({ errors });
