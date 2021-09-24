@@ -10,22 +10,22 @@ export default function Sidebar(){
 
                     <h3 className="sidebarTitle">Dashboard</h3>
                     <ul className="sidebarList">
-                        <Link to="/forestAdmin/pinMap">
+                        <Link to="/systemAdmin">
                             <li className="sidebarListItem active">
                                 <Nature className="sidebarIcon"/>
-                                Register Forest
+                                Register Forest Admin
                             </li>
                         </Link>
                     </ul>
 
                     <h3 className="sidebarTitle">Quick Menu</h3>
                     <ul className="sidebarList">
-                        <Link to="/forestAdmin/users">
+                        {/* <Link to="/forestAdmin/users">
                             <li className="sidebarListItem active">
                                 <Group className="sidebarIcon"/>
                                 Users
                             </li>
-                        </Link>
+                        </Link> */}
                         <li className="sidebarListItem active">
                             <Assessment className="sidebarIcon"/>
                             Reports

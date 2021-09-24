@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
 import { Map, TileLayer, Rectangle, Popup} from 'react-leaflet';
-import osm from '../forestAdmin/osmProvider';
+import osm from './osmProvider';
 import '../../style/map.css';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-draw/dist/leaflet.draw.css';

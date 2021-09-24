@@ -8,7 +8,7 @@ export default function Topbar() {
         <div className="topbar">
             <div className="topbarWrapper">
                 <div className="topLeft">
-                    <span className="logo">Forest Admin</span>
+                    <span className="logo">System Admin</span>
                 </div>
                 <div className="topRight">
 

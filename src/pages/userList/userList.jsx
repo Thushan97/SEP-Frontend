@@ -2,7 +2,7 @@ import '../../style/userList.css';
 import { DataGrid } from '@material-ui/data-grid';
 import { Delete } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function UserList(){
     
@@ -40,7 +40,7 @@ export default function UserList(){
           renderCell: (params) => {
               return(
                   <>
-                    <Link to={"/systemAdmin/user/"+params.row.id} >
+                    <Link to={"/forestAdmin/user/"+params.row.id} >
                         <button className="userListEdit">Edit</button>
                     </Link>
                     <Delete className="userListDelete" onClick={() => handleDelete(params.row.id)}/>

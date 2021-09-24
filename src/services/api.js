@@ -15,9 +15,12 @@ export const registerAccessToken = (token) => {
 }
 
 export const api = {
-    systemAdmin : {
+    forestAdmin : {
         registerForest: async (data) => {
             return await getInstance().post('forest/register',data);
+        },
+        getUsers: async (data) => {
+            return await getInstance().get('users/forestAdmins',data);
         }
     },
 
@@ -35,7 +38,7 @@ export const api = {
             return await getInstance().post('forest/get_tiles',data);
         },
         getTileDataByTileId : async (data) => {
-            return await getInstance().get('',data);
+            return await getInstance().post('forest/get_tile_details',data);
         }
     }
 }

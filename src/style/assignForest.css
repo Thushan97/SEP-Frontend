@@ -1,6 +1,6 @@
 .forestCard {
-    width: 250px;
-    height: 400px;
+    width: 300px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -16,8 +16,8 @@
 .detailsForm {
     margin-top: -20px;
     margin-left: -20px;
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

@@ -10,12 +10,12 @@ import '../../style/pinMap.css';
 import {Link} from 'react-router-dom';
 
 export default function PinMap(){
-    const [center, setCenter] = useState( { lat: 6.927079, lng: 79.861244} );
+    const [center, setCenter] = useState( {  lng: 80.636696, lat: 7.291418} );
     const [newPlace, setNewPlace] = useState(null);
     const [name, setName] = useState(null);
     const [district, setDistrict] = useState(null);
     const [country, setCountry] = useState(null);
-    const ZOOM_LEVEL = 8;
+    const ZOOM_LEVEL = 9;
     const mapRef = useRef();
 
     delete L.Icon.Default.prototype._getIconUrl;
@@ -31,8 +31,8 @@ export default function PinMap(){
 
     const handleAddClick = (e) => {
         //console.log(e.latlng);
-        const {lat, lng} = e.latlng;
-        setNewPlace({lat, lng});
+        const {lng, lat} = e.latlng;
+        setNewPlace({lng, lat});
     }
 
     // const handleSubmit = async (e) => {
@@ -76,12 +76,12 @@ export default function PinMap(){
                                 <label className="details">Country</label>
                                 <input className="detailsInput" placeholder="Enter Country" onChange={(e) => setCountry(e.target.value)}/>
                                 
-                                {/* <Link to={`/systemAdmin/createForest/${name}`}>
+                                {/* <Link to={`/forestAdmin/createForest/${name}`}>
                                     <button className="submitButton" type="submit">Add Pin</button>
                                 </Link> */}
 
                                 <Link to={{
-                                            pathname:'/systemAdmin/createForest',
+                                            pathname:'/forestAdmin/createForest',
                                             state: {name, district, country, newPlace}  
                                 }}>
                                     <button className="submitButton" type="submit">Add Pin</button>

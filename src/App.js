@@ -7,11 +7,15 @@ import Sidebar from './components/sidebar/sidebar';
 import UserList from './pages/userList/userList';
 import User from './pages/user/user';
 import NewUser from './pages/newUser/newUser';
-import RenderMap from './views/systemAdmin/map';
-import PinMap from './views/systemAdmin/pinMap';
+import RenderMap from './views/forestAdmin/map';
+import PinMap from './views/forestAdmin/pinMap';
 import ForestOfficerSidebar from './views/forestOfficer/sidebar';
 import ForestOfficerTopbar from './views/forestOfficer/topbar';
 import AssignForests from './views/forestOfficer/assisgnForests';
+import ForestAdmins from './views/forestAdmin/users';
+import SystemAdminSidebar from './views/systemAdmin/sidebar';
+import SystemAdminTopbar from './views/systemAdmin/topbar';
+import NewForestAdmin from './views/systemAdmin/users';
 import './App.css';
 
 function App() {
@@ -21,7 +25,18 @@ function App() {
         <Switch>
           <Route path="/login" component={LoginForm}></Route>
           <Route path="/register" component={RegisterForm}></Route>
+
           <Route exact path='/systemAdmin' render={props =>
+            <div>
+              <SystemAdminTopbar />
+              <div className="containers">
+                <SystemAdminSidebar />
+                <NewForestAdmin />
+              </div>
+            </div>
+          } />
+
+          <Route exact path='/forestAdmin' render={props =>
             <div>
               <Topbar />
               <div className="containers">
@@ -31,16 +46,16 @@ function App() {
               </div>
             </div>
           } />
-          <Route path='/systemAdmin/users' render={props =>
+          <Route path='/forestAdmin/users' render={props =>
             <div>
               <Topbar />
               <div className="containers">
                 <Sidebar />
-                <UserList />
+                <ForestAdmins />
               </div>
             </div>
           } />
-          <Route path='/systemAdmin/user' render={props =>
+          <Route path='/forestAdmin/user' render={props =>
             <div>
               <Topbar />
               <div className="containers">
@@ -49,7 +64,7 @@ function App() {
               </div>
             </div>
           } />
-          <Route path='/systemAdmin/newUser' render={props =>
+          <Route path='/forestAdmin/newUser' render={props =>
             <div>
               <Topbar />
               <div className="containers">
@@ -58,7 +73,7 @@ function App() {
               </div>
             </div>
           } />
-          <Route path='/systemAdmin/createForest' render={props =>
+          <Route path='/forestAdmin/createForest' render={props =>
             <div>
               <Topbar />
               <div className="containers">
@@ -67,7 +82,7 @@ function App() {
               </div>
             </div>
           } />
-          <Route path='/systemAdmin/pinMap' render={props =>
+          <Route path='/forestAdmin/pinMap' render={props =>
             <div>
               <Topbar />
               <div className="containers">

@@ -14,9 +14,9 @@ import {api} from '../../services/api';
 export default function RenderMap(props){
     let location = useLocation();
       //console.log(location.state.newPlace)
-    const [center, setCenter] = useState( { lat: 6.927079, lng: 79.861244} );
+    const [center, setCenter] = useState( location.state.newPlace);
     const [mapLayers, setMapLayers] = useState([]);
-    const ZOOM_LEVEL = 8;
+    const ZOOM_LEVEL = 10;
     const mapRef = useRef();
 
     delete L.Icon.Default.prototype._getIconUrl;
@@ -69,7 +69,7 @@ export default function RenderMap(props){
     const arrayMap = () => {
         if(mapLayers[0]){
             const content = mapLayers[0].latlngs.map( (cordinates) => 
-                [cordinates.lat, cordinates.lng]
+                [cordinates.lng, cordinates.lat]
             );
             return content;
         }
@@ -82,7 +82,7 @@ export default function RenderMap(props){
             "name" : location.state.name,
             "district": location.state.district,
             "country": location.state.country,
-            "location": [location.state.newPlace.lat, location.state.newPlace.lng],
+            "location": [location.state.newPlace.lng, location.state.newPlace.lat],
             "forest_boundary": {
                 "type" : "Feature Collection",
                 "features": [
@@ -101,7 +101,7 @@ export default function RenderMap(props){
         }
 
         try{
-            const response = api.systemAdmin.registerForest(newForest);
+            const response = api.forestAdmin.registerForest(newForest);
         }
         catch(ex) {
             console.log(ex);
@@ -125,7 +125,7 @@ export default function RenderMap(props){
                 <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution}/>
             </Map>
 
-            <Link to="/systemAdmin">
+            <Link to="/forestAdmin">
                 <button className="mapSubmitButton" type="submit" onClick={handleClick} >Submit</button>       
             </Link>
             
