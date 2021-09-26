@@ -1,13 +1,12 @@
 import React, {useRef} from 'react';
 import { Map, TileLayer, FeatureGroup } from 'react-leaflet';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import osm from './osmProvider';
 import '../../style/map.css';
 import 'leaflet/dist/leaflet.css';
 import { EditControl } from 'react-leaflet-draw';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import L from 'leaflet';
-import PinMap from './pinMap';
 import {useLocation, Link} from 'react-router-dom'
 import {api} from '../../services/api';
 

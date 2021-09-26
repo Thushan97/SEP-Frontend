@@ -23,13 +23,15 @@ export default function Sidebar(){
                         <Link to="/forestAdmin/users">
                             <li className="sidebarListItem active">
                                 <Group className="sidebarIcon"/>
-                                Users
+                                Forest Officers
                             </li>
                         </Link>
-                        <li className="sidebarListItem active">
-                            <Assessment className="sidebarIcon"/>
-                            Reports
-                        </li>
+                        <Link to="/forestAdmin/newForestOfficer">
+                            <li className="sidebarListItem active">
+                                <Assessment className="sidebarIcon"/>
+                                New Forest Officer
+                            </li>
+                        </Link>
                     </ul>
 
                     <h3 className="sidebarTitle">Notifications</h3>

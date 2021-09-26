@@ -8,7 +8,7 @@ import { schema } from '../../validations/adminsValidation';
 
 toast.configure();
 
-export default function NewUser(){
+export default function NewForestOfficer(){
     const [username, setUsername] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -34,7 +34,7 @@ export default function NewUser(){
 
         try{  
             if(!result.error){
-                const response = await api.systemAdmin.addForestAdmin(data);
+                const response = await api.forestAdmin.addForestOfficer(data);
                 if(response.status === 200){
                     setUsername('');
                     setFirstName('');
@@ -42,7 +42,7 @@ export default function NewUser(){
                     setForestName('');
                     setPassword('');
                     setPhone('');
-                    toast.success("Forest Admin Registered Successfully.");
+                    toast.success("Forest Officer Registered Successfully.");
                 }          
             } else{
                 toast.warning("Please ckeck the form and fill again!");
@@ -50,13 +50,13 @@ export default function NewUser(){
             
         }
         catch(ex){
-            toast.error("Something Went Wrong");
+            toast.error("Something Went Wrong!");
         }
     }
     
     return(
         <div className="newUser">
-            <h1 className="newUserTitle">New Forest Admin</h1>
+            <h1 className="newUserTitle">New Forest Officer</h1>
             <form className="newUserForm" >
 
                 <div className="newUserItem">

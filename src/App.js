@@ -5,18 +5,18 @@ import RegisterForm from './components/registerForm';
 import Topbar from './components/topBar/Topbar';
 import Sidebar from './components/sidebar/sidebar';
 import UserList from './pages/userList/userList';
-import User from './pages/user/user';
-import NewUser from './pages/newUser/newUser';
 import RenderMap from './views/forestAdmin/map';
 import PinMap from './views/forestAdmin/pinMap';
 import ForestOfficerSidebar from './views/forestOfficer/sidebar';
 import ForestOfficerTopbar from './views/forestOfficer/topbar';
 import AssignForests from './views/forestOfficer/assisgnForests';
-import ForestAdmins from './views/forestAdmin/users';
 import SystemAdminSidebar from './views/systemAdmin/sidebar';
 import SystemAdminTopbar from './views/systemAdmin/topbar';
 import NewForestAdmin from './views/systemAdmin/users';
+import NewForestOfficer from './views/forestAdmin/newForestOfficer';
+import ForestOfficerList from './views/forestAdmin/users';
 import './App.css';
+
 
 function App() {
 
@@ -41,7 +41,6 @@ function App() {
               <Topbar />
               <div className="containers">
                 <Sidebar />
-                {/* <div className="others">Other Pages</div> */}
                 <UserList />
               </div>
             </div>
@@ -51,11 +50,11 @@ function App() {
               <Topbar />
               <div className="containers">
                 <Sidebar />
-                <ForestAdmins />
+                <ForestOfficerList />
               </div>
             </div>
           } />
-          <Route path='/forestAdmin/user' render={props =>
+          {/* <Route path='/forestAdmin/user' render={props =>
             <div>
               <Topbar />
               <div className="containers">
@@ -63,13 +62,13 @@ function App() {
                 <User />
               </div>
             </div>
-          } />
-          <Route path='/forestAdmin/newUser' render={props =>
+          } /> */}
+          <Route path='/forestAdmin/newForestOfficer' render={props =>
             <div>
               <Topbar />
               <div className="containers">
                 <Sidebar />
-                <NewUser/>
+                <NewForestOfficer/>
               </div>
             </div>
           } />

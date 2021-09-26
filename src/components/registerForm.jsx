@@ -2,7 +2,7 @@ import React from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
 import '../style/loginStyle.css';
-import { api, registerAccessToken } from '../services/api';
+import { api } from '../services/api';
 
 class RegisterForm extends Form {
     state = {

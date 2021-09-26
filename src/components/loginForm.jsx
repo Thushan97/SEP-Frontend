@@ -3,7 +3,7 @@ import Joi from 'joi-browser';
 import Form from './common/form';
 import '../style/loginStyle.css';
 import { Link } from 'react-router-dom';
-import { api, registerAccessToken } from './../services/api';
+import { api } from './../services/api';
 
 class LoginForm extends Form {
     state = {

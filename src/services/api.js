@@ -20,7 +20,10 @@ export const api = {
             return await getInstance().post('forest/register',data);
         },
         getUsers: async (data) => {
-            return await getInstance().get('users/forestAdmins',data);
+            return await getInstance().get('users/forestAdmins');
+        },
+        addForestOfficer: async (data) => {
+            return await getInstance().post('user/forestOfficer',data);
         }
     },
 
@@ -39,6 +42,12 @@ export const api = {
         },
         getTileDataByTileId : async (data) => {
             return await getInstance().post('forest/get_tile_details',data);
+        }
+    },
+
+    systemAdmin : {
+        addForestAdmin : async (data) => {
+            return await getInstance().post('user/forestAdmin', data);
         }
     }
 }

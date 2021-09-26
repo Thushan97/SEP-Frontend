@@ -2,7 +2,7 @@ import '../../style/userList.css';
 import { DataGrid } from '@material-ui/data-grid';
 import { Delete } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function UserList(){
     
