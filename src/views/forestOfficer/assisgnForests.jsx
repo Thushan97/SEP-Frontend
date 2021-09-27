@@ -10,6 +10,9 @@ import '../../style/pinMap.css';
 import '../../style/date.css';
 import {api} from '../../services/api';
 import '../../style/assignForest.css';
+import { toast } from 'react-toastify';
+
+toast.configure();
 
 export default function AssignForest(){
     const [selectedDate, setSelectedDate] = useState(null);
@@ -21,7 +24,8 @@ export default function AssignForest(){
     const [forestName, setForestName] = useState();
     const [saveTime, setSaveTime] = useState(null);
     const [image, setImage] = useState();
-    const [selectedImage, setSelectedImage] = useState("");
+    const [selectedImage, setSelectedImage] = useState("none");
+    const [inferedThreatPresent, setInferedThreatPresent] = useState([]);
 
     useEffect(() => {
         async function getTiles(){
@@ -52,6 +56,7 @@ export default function AssignForest(){
                             setTiles(response.data.forest_tiles);
                             setForestId(response.data._id);
                             setForestName(response.data.forest_name);
+                            setSaveTime(response.data.forest_tiles[0].inference_updated_date)
                             const lat = response.data.location[0];
                             const lng = response.data.location[1];
                             setCenter({ lat, lng });
@@ -64,24 +69,30 @@ export default function AssignForest(){
         }
         getTiles();
     },[selectedDate] )
+
     const handleAddClick = async (id, e) => {
+        setImage("none");
         setCurrentPlaceId(id);
         const data = {
             "forest_id" : forestId,
             "tile_id" : id,
             "date" : date
         }
-        console.log(data);
         try{
             const response = await api.forestOfficer.getTileDataByTileId(data);
-            const result = response.data;
-            //console.log(result)
-            if(result){
-                setSaveTime(result.save_time);
-                setImage(result.image.$binary.base64);
-                // console.log(result.image.$binary.base64)
-                //console.log(saveTime)
-            }    
+            if(response.data === null){
+                setCurrentPlaceId(null);
+                toast.warning("There are no details available");
+
+            }
+            // const result = await api.forestOfficer.getImageByID(`${response.data._id}/rgb`);
+            if(response.data._id){
+                setImage(response.data._id);
+            }
+            if(response.data.infered_threat_present){
+                setInferedThreatPresent(response.data.infered_threat_present);
+            }
+            
         }
         catch(ex){
             console.log(ex);
@@ -109,7 +120,12 @@ export default function AssignForest(){
                 <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution}/>  
                 <div>
                     {tiles.map((i,index) => {
-                        return (tiles && <Rectangle key={index} bounds={[i.bbox[0],i.bbox[1]]} onClick={() => handleAddClick(i.tile_id)}/>)   
+                        if(i.infered_threat_present){
+                            return (tiles && <Rectangle key={index} color="red" bounds={[i.bbox[0],i.bbox[1]]} onClick={() => handleAddClick(i.tile_id)}/>)   
+                        }else{
+                            return (tiles && <Rectangle key={index} bounds={[i.bbox[0],i.bbox[1]]} onClick={() => handleAddClick(i.tile_id)}/>)
+                        }
+                        
                     })}            
                 </div>
                 {currentPlaceId && (
@@ -121,24 +137,27 @@ export default function AssignForest(){
                                 <h5 className="place">{currentPlaceId}</h5>
                                 <label className="details">Tile Updated Date Time</label>
                                 <h5 className="place">{saveTime}</h5>
-                                <label className="details">Sattelite Image</label>
-                                <img src={`data:image/png;base64,${image}`} />
-                                {image}
+                                <label className="details">InferedThreatPresent</label>
+                                <h5 className="place">{inferedThreatPresent}</h5>
+                                {/* <label className="details">Sattelite Image</label>
+                                { image && (<img src={`http://127.0.0.1:5000/forest/get_tile_view/${image}/rgb`} style={{ width: 300, height: 190 }}/>)} */}
                                 <label className="details">Image Type</label>
                                 <select className="custom-select" onChange={(e) => {
                                     const selectedType = e.target.value
                                     setSelectedImage(selectedType)
                                 }}>
-                                    <option value="NONE">NONE</option>
-                                    <option value="FM">FM</option>
-                                    <option value="NDWI">NDWI</option>
-                                    <option value="MNDWI">MNDWI</option>
-                                    <option value="VARI">VARI</option>
-                                    <option value="SAVI">SAVI</option>
-                                    <option value="NDVI">NDVI</option>
+                                    <option value="none">NONE</option>
+                                    <option value="rgb">RGB</option>
+                                    <option value="fm">FM</option>
+                                    <option value="ndwi">NDWI</option>
+                                    <option value="mndwi">MNDWI</option>
+                                    <option value="vari">VARI</option>
+                                    <option value="savi">SAVI</option>
+                                    <option value="nvdi">NDVI</option>
+                                    <option value="masked_rgb">Masked RGB</option>
                                 </select>
                                 <label className="details">Image</label>
-                                <img src={`data:image/jpeg;base64,${selectedImage}`} />
+                                {selectedImage !== "none" && (<img src={`http://127.0.0.1:5000/forest/get_tile_view/${image}/${selectedImage}`} style={{ width: 300, height: 500 }}/>)}
                         </div>
                     </Popup>
                 )}

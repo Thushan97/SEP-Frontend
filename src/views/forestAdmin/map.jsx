@@ -9,6 +9,9 @@ import 'leaflet-draw/dist/leaflet.draw.css';
 import L from 'leaflet';
 import {useLocation, Link} from 'react-router-dom'
 import {api} from '../../services/api';
+import { toast } from 'react-toastify';
+
+toast.configure();
 
 export default function RenderMap(props){
     let location = useLocation();
@@ -75,7 +78,7 @@ export default function RenderMap(props){
     }
     
 
-    const handleClick = () => {
+    const handleClick = async () => {
 
         const newForest = {
             "name" : location.state.name,
@@ -100,10 +103,16 @@ export default function RenderMap(props){
         }
 
         try{
-            const response = api.forestAdmin.registerForest(newForest);
+            const response = await api.forestAdmin.registerForest(newForest);
+            console.log(response);
+            if(response.status === 200){
+                console.log(response.status);
+                toast.success("Forest Registered Successfully!");
+            }
         }
         catch(ex) {
             console.log(ex);
+            toast.error("Something Went Wrong!");
         }
         
     }
@@ -124,9 +133,9 @@ export default function RenderMap(props){
                 <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution}/>
             </Map>
 
-            <Link to="/forestAdmin">
+            
                 <button className="mapSubmitButton" type="submit" onClick={handleClick} >Submit</button>       
-            </Link>
+            
             
         </div>
     )

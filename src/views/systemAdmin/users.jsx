@@ -26,8 +26,9 @@ export default function NewUser(){
             "last_name" : lastName,
             "forest_name" : forestName,
             "password" : password,
-            "phone" : phone,
+            "phone" : phone
         }
+        console.log(data);
 
         const result = Joi.validate(data, schema);
         console.log(result);
@@ -88,7 +89,7 @@ export default function NewUser(){
                     <label>Phone</label>
                     <input type="text" placeholder="Mobile Number" value={phone} onChange={(e) => setPhone(e.target.value)}/>
                 </div>
-  
+
                 <button className="newUserButton" onClick={handleSubmit}>Create</button>             
             </form>
             

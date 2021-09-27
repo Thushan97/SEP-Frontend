@@ -26,7 +26,7 @@ export default function NewForestOfficer(){
             "last_name" : lastName,
             "forest_name" : forestName,
             "password" : password,
-            "phone" : phone,
+            "phone" : phone
         }
 
         const result = Joi.validate(data, schema);

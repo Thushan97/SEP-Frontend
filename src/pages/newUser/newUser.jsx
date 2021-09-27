@@ -46,10 +46,11 @@ export default function NewUser(){
                 </div>
 
                 <div className="newUserItem">
-                <label>Active</label>
+                <label>Status</label>
                 <select className="newUserSelect" name="active" id="active">
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                    <option value="new">New</option>
+                    <option value="active">Active</option>
+                    <option value="deactive">Deactive</option>
                 </select>
                 </div>
                 <div className="newUserClick">

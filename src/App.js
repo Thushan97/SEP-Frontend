@@ -4,7 +4,7 @@ import { Route, Redirect, Switch} from 'react-router-dom';
 import RegisterForm from './components/registerForm';
 import Topbar from './components/topBar/Topbar';
 import Sidebar from './components/sidebar/sidebar';
-import UserList from './pages/userList/userList';
+import User from './views/forestAdmin/user';
 import RenderMap from './views/forestAdmin/map';
 import PinMap from './views/forestAdmin/pinMap';
 import ForestOfficerSidebar from './views/forestOfficer/sidebar';
@@ -41,7 +41,7 @@ function App() {
               <Topbar />
               <div className="containers">
                 <Sidebar />
-                <UserList />
+                <ForestOfficerList />
               </div>
             </div>
           } />
@@ -54,7 +54,7 @@ function App() {
               </div>
             </div>
           } />
-          {/* <Route path='/forestAdmin/user' render={props =>
+          <Route path='/forestAdmin/user' render={props =>
             <div>
               <Topbar />
               <div className="containers">
@@ -62,7 +62,7 @@ function App() {
                 <User />
               </div>
             </div>
-          } /> */}
+          } />
           <Route path='/forestAdmin/newForestOfficer' render={props =>
             <div>
               <Topbar />

@@ -3,33 +3,35 @@ import { DataGrid } from '@material-ui/data-grid';
 import { Delete } from '@material-ui/icons';
 import { useState, useEffect } from 'react';
 import { api } from '../../services/api';
+import {Link} from 'react-router-dom';
 
 export default function ForestOfficerList(){
+  const [data,setData] = useState([]);
     
     const columns = [
         { field: 'id', headerName: 'ID', width: 120 },
         {
-            field: 'username',
-            headerName: 'Username',
-            width: 180,
-            editable: true,
+          field: 'username',
+          headerName: 'Username',
+          width: 150,
+          editable: true,
         },
         {
           field: 'first_name',
           headerName: 'First name',
-          width: 180,
+          width: 150,
           editable: true,
         },
         {
           field: 'last_name',
           headerName: 'Last name',
-          width: 180,
+          width: 150,
           editable: true,
         },
         {
           field: 'forest_name',
           headerName: 'Forest Name',
-          width: 180,
+          width: 160,
           editable: true,
         },
         {
@@ -37,7 +39,14 @@ export default function ForestOfficerList(){
           headerName: 'Telephone',
           description: 'This column has a value getter and is not sortable.',
           sortable: false,
-          width: 180,
+          width: 150,
+        },
+        {
+          field: 'status',
+          headerName: 'Status',
+          description: 'This column has a value getter and is not sortable.',
+          sortable: false,
+          width: 150,
         },
         {
           field: 'action',
@@ -45,39 +54,45 @@ export default function ForestOfficerList(){
           width: '180',
           renderCell: (params) => {
               return(
-                <Delete className="userListDelete" onClick={() => handleDelete(params.row.id)}/>
+                <>
+                <Link to={"/forestAdmin/user/"+params.row.id} >
+                        <button className="userListEdit">Edit</button>
+                </Link>
+                <Delete className="userListDelete" onClick={() => handleDelete(params.row.username)}/>
+                </>
               )
           }
         },
       ];
 
     useEffect(() => {
-        async function getForestOfficers(){
+        try{
+          async function getForestOfficers(){
             const response = await api.forestAdmin.getUsers();
-        }
-
+            if(response.data){
+              console.log(response.data);
+              setData(response.data);
+            }
+          }
         getForestOfficers();
-    },)
+        }
+        catch(ex){
+          console.log(ex);
+        }    
+    },[])
+
       
-      const rows = [
-        { id: 1, lastName: 'Snow', firstName: 'Jon', status: 'active' },
-        { id: 2, lastName: 'Lannister', firstName: 'Cersei', status: 'active' },
-        { id: 3, lastName: 'Lannister', firstName: 'Jaime', status: 'active' },
-        { id: 4, lastName: 'Stark', firstName: 'Arya', status: 'active' },
-        { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', status: 'active' },
-        { id: 6, lastName: 'Melisandre', firstName: null, status: 'active' },
-        { id: 7, lastName: 'Clifford', firstName: 'Ferrara', status: 'active' },
-        { id: 8, lastName: 'Frances', firstName: 'Rossini', status: 'active' },
-        { id: 9, lastName: 'Roxie', firstName: 'Harvey', status: 'active' },
-      ];
 
-      const [data,setData] = useState(rows);
-
-      const handleDelete = (id) => {
-        setData(data.filter((item) => item.id !== id));
+      const handleDelete = async (username) => {
+        console.log(username);
+        const email = {
+          "email": username
+        }
+        const result = await api.forestAdmin.deleteForestOfficer(email);
+       
+        setData(data.filter((item) => item.username !== username));
       }
-      
-
+    console.log(data);    
     return(
         <div className="userList">
             <DataGrid
