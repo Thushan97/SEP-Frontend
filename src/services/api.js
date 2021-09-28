@@ -51,7 +51,10 @@ export const api = {
             return await getInstance().post('forest/get_tile_details',data);
         },
         getImageByID : async (data) => {
-            return await getInstance().get(`forest/get_tile_view/${data}`)
+            return await getInstance().get(`forest/get_tile_view/${data}`);
+        },
+        updateDetails: async (data) => {
+            return await getInstance().post('user/forestOfficer/update', data);
         }
     },
 

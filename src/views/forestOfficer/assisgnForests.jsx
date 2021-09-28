@@ -99,7 +99,7 @@ export default function AssignForest(){
         }
     }
 
-    const ZOOM_LEVEL = 10;
+    const ZOOM_LEVEL = 8;
     const mapRef = useRef();
 
     return(
@@ -157,7 +157,7 @@ export default function AssignForest(){
                                     <option value="masked_rgb">Masked RGB</option>
                                 </select>
                                 <label className="details">Image</label>
-                                {selectedImage !== "none" && (<img src={`http://127.0.0.1:5000/forest/get_tile_view/${image}/${selectedImage}`} style={{ width: 300, height: 500 }}/>)}
+                                {selectedImage !== "none" && (<img src={`http://127.0.0.1:5000/forest/get_tile_view/${image}/${selectedImage}`} style={{ width: 300, height: 500 }} alt=""/>)}
                         </div>
                     </Popup>
                 )}

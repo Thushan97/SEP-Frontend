@@ -7,7 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import { EditControl } from 'react-leaflet-draw';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import L from 'leaflet';
-import {useLocation, Link} from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 import {api} from '../../services/api';
 import { toast } from 'react-toastify';
 

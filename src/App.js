@@ -15,8 +15,8 @@ import SystemAdminTopbar from './views/systemAdmin/topbar';
 import NewForestAdmin from './views/systemAdmin/users';
 import NewForestOfficer from './views/forestAdmin/newForestOfficer';
 import ForestOfficerList from './views/forestAdmin/users';
+import UpdateForestOfficer from './views/forestOfficer/updateForestOfficer';
 import './App.css';
-
 
 function App() {
 
@@ -101,15 +101,15 @@ function App() {
             </div>
           } />
 
-          {/* <Route path='/forestOfficer/forests' render={props => 
+          <Route path='/forestOfficer/update' render={props => 
             <div>
               <ForestOfficerTopbar/>
               <div className="containers">
                 <ForestOfficerSidebar/>
-                <AssignForests />
+                <UpdateForestOfficer />
               </div>
             </div>
-          } /> */}
+          } />
 
           <Redirect to="/login" /> 
         </Switch>       

@@ -2,25 +2,25 @@ import '../../style/user.css';
 import { useState} from 'react';
 import { toast } from 'react-toastify';
 import Joi from 'joi-browser';
-import { schema } from '../../validations/updateForestOfficer';
+import { schema } from '../../validations/forestOfficerValidate';
 import { api } from '../../services/api';
-import { useLocation } from 'react-router-dom';
 
 toast.configure();
 
-export default function User(){
-    let location = useLocation();
-    const [username, setUsername] = useState();
-    const [forestName, setForestName] = useState();
+export default function UpdateForestOfficer(){
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [phone, setPhone] = useState('');
 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
 
         const data = {
-            "oldUsername" : location.state.username,
-            "username" : username,
-            "forest_name" : forestName,
+            "username" : localStorage.getItem("email"),
+            "first_name" : firstName,
+            "last_name" : lastName,
+            "phone" : phone
         }
 
         console.log(data);
@@ -30,10 +30,11 @@ export default function User(){
 
         try{  
             if(!result.error){
-                const response = await api.forestAdmin.updateForestOfficer(data);
+                const response = await api.forestOfficer.updateDetails(data);
                 if(response.status === 200){
-                    setUsername('');
-                    setForestName('');
+                    setFirstName('');
+                    setLastName('');
+                    setPhone('');
                     toast.success("Forest Officer Updated Successfully.");
                 }          
             } else{
@@ -55,13 +56,18 @@ export default function User(){
                     <form className="userUpdateForm" onSubmit={handleSubmit}>
                         
                         <div className="newUserItem">
-                            <label>Username</label>
-                            <input type="email" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                            <label>First Name</label>
+                            <input type="text" placeholder="FirstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                         </div>
 
                         <div className="newUserItem">
-                            <label>Forest Name</label>
-                            <input type="text" placeholder="Forest Name" value={forestName} onChange={(e) => setForestName(e.target.value)}/>
+                            <label>Last Name</label>
+                            <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                        </div>
+
+                        <div className="newUserItem">
+                            <label>Phone</label>
+                            <input type="text" placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
                         </div>
 
                         <div className="userUpdateRight">

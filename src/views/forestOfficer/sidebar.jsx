@@ -20,10 +20,10 @@ export default function Sidebar(){
 
                     <h3 className="sidebarTitle">Quick Menu</h3>
                     <ul className="sidebarList">
-                        <Link to="/systemAdmin/users">
+                        <Link to="/forestOfficer/update">
                             <li className="sidebarListItem active">
                                 <Group className="sidebarIcon"/>
-                                Users
+                                Upadate Account
                             </li>
                         </Link>
                         <li className="sidebarListItem active">

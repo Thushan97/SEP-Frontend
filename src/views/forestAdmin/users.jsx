@@ -53,9 +53,13 @@ export default function ForestOfficerList(){
           headerName: 'Action',
           width: '180',
           renderCell: (params) => {
+              const username = params.row.username;
               return(
                 <>
-                <Link to={"/forestAdmin/user/"+params.row.id} >
+                <Link to={{
+                  pathname: "/forestAdmin/user/"+params.row.id,
+                  state: {username}
+                  }} >
                         <button className="userListEdit">Edit</button>
                 </Link>
                 <Delete className="userListDelete" onClick={() => handleDelete(params.row.username)}/>
