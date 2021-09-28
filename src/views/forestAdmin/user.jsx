@@ -10,8 +10,8 @@ toast.configure();
 
 export default function User(){
     let location = useLocation();
-    const [username, setUsername] = useState();
-    const [forestName, setForestName] = useState();
+    const [username, setUsername] = useState('');
+    const [forestName, setForestName] = useState('');
 
     const handleSubmit = async (e) => {
 
@@ -66,6 +66,15 @@ export default function User(){
 
                         <div className="userUpdateRight">
                             <button className="userUpdateButton">Update</button>
+                        </div>
+
+                        <div className="newUserItem">
+                            <label>Status</label>
+                            <select className="newUserSelect" name="active" id="active">
+                                <option value="new">New</option>
+                                <option value="active">Active</option>
+                                <option value="deactive">Deactive</option>
+                            </select>
                         </div>
                     </form>
                 </div>

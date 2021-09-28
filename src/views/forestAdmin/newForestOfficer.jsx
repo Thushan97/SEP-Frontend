@@ -1,6 +1,6 @@
 import '../../style/newUser.css';
 import { api } from '../../services/api';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Joi from 'joi-browser';
@@ -12,9 +12,18 @@ export default function NewForestOfficer(){
     const [username, setUsername] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [forestName, setForestName] = useState('');
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
+    const [forestId, setForestId] = useState('');
+    const [forestDetails, setForestDetails] = useState([]);
+
+    useEffect(() => {
+        async function getForestNames(){
+            const response = await api.systemAdmin.getForestNamesAndIds();
+            setForestDetails(response.data);
+        }
+        getForestNames();
+    }, [])
 
     const handleSubmit = async (e) => {
 
@@ -24,7 +33,7 @@ export default function NewForestOfficer(){
             "username" : username,
             "first_name" : firstName,
             "last_name" : lastName,
-            "forest_name" : forestName,
+            "forest_id" : forestId,
             "password" : password,
             "phone" : phone
         }
@@ -39,9 +48,9 @@ export default function NewForestOfficer(){
                     setUsername('');
                     setFirstName('');
                     setLastName('');
-                    setForestName('');
                     setPassword('');
                     setPhone('');
+                    setForestId('');
                     toast.success("Forest Officer Registered Successfully.");
                 }          
             } else{
@@ -76,8 +85,14 @@ export default function NewForestOfficer(){
 
                 <div className="newUserItem">
                     <label>Forest Name</label>
-                    <input type="text" placeholder="Forest Name" value={forestName} onChange={(e) => setForestName(e.target.value)}/>
+                    <select className="newUserSelect" name="active" id="active" onChange={(e) => setForestId(e.target.value)}>
+                        <option value="none">None</option>
+                        {forestDetails.map((forest) => 
+                            <option key={forest._id} value={forest._id}>{forest.forest_name}</option>  
+                        )}
+                    </select>
                 </div>
+
 
                 <div className="newUserItem">
                     <label>Password</label>
@@ -88,6 +103,8 @@ export default function NewForestOfficer(){
                     <label>Phone</label>
                     <input type="text" placeholder="Mobile Number" value={phone} onChange={(e) => setPhone(e.target.value)}/>
                 </div>
+
+                
   
                 <button className="newUserButton" onClick={handleSubmit}>Create</button>             
             </form>

@@ -1,0 +1,42 @@
+.card {
+    width: 200px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.detailsForm {
+    margin-top: -20px;
+    margin-left: -20px;
+    width: 200px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.submitButton{
+    margin-left: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 100px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}
+
+.newUserSelect{
+    height: 30px;
+    margin-left: -30px;
+    width: 180px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+h5{
+    margin-left: -12px;
+}

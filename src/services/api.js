@@ -30,6 +30,15 @@ export const api = {
         },
         updateForestOfficer: async (data) => {
             return await getInstance().post('user/updateForestOfficer', data);
+        },
+        getForestId : async (data) => {
+            return await getInstance().post('user/forestAdmin/forestId', data);
+        },
+        getForestArea: async (data) => {
+            return await getInstance().get(`forest/area/${data}`);
+        },
+        addRestrictionAreas: async (data, forestId) => {
+            return await getInstance().post(`forest/area/${forestId}`,data)
         } 
 
     },
@@ -40,6 +49,9 @@ export const api = {
         },
         register: async (data) => {
             return await getInstance().post('user/register',data);
+        },
+        logout: async (data) => {
+            return await getInstance().post('user/logout',data);
         }
     },
 
@@ -61,6 +73,9 @@ export const api = {
     systemAdmin : {
         addForestAdmin : async (data) => {
             return await getInstance().post('user/forestAdmin', data);
+        },
+        getForestNamesAndIds: async () => {
+            return await getInstance().get('forest/forestNames');
         }
     }
 }

@@ -9,6 +9,18 @@ export default function Sidebar(){
                 <div className="siderbarMenu">
 
                     <h3 className="sidebarTitle">Dashboard</h3>
+
+                    <ul className="sidebarList">
+                        <Link to="/systemAdmin/pinMap">
+                            <li className="sidebarListItem active">
+                                <Nature className="sidebarIcon"/>
+                                Register Forest
+                            </li>
+                        </Link>
+
+                    </ul>
+
+                    <h3 className="sidebarTitle">User</h3>
                     <ul className="sidebarList">
                         <Link to="/systemAdmin">
                             <li className="sidebarListItem active">

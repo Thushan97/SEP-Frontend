@@ -2,8 +2,25 @@ import React from 'react';
 import '../../style/topbar.css';
 import {NotificationsNone, Settings} from '@material-ui/icons';
 import Avatar from '../../images/avatar.jpg';
+import { useHistory } from 'react-router';
+import { api } from '../../services/api';
 
 export default function Topbar() {
+
+    let history = useHistory();
+
+    const handleLogout = async () => {
+
+        const data = {
+            "email" : localStorage.getItem("email")
+        }
+        
+        const result = await api.auth.logout(data);
+        localStorage.removeItem("email");
+        localStorage.removeItem("token");
+        history.push('/login');
+    }
+
     return(
         <div className="topbar">
             <div className="topbarWrapper">
@@ -22,6 +39,7 @@ export default function Topbar() {
                     </div>
                     
                     <img src={Avatar} alt="" className="topAvatar"/>
+                    <button className="button-logout" onClick={handleLogout}>Logout</button>
                 </div>
             </div>   
         </div>

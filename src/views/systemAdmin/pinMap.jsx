@@ -81,7 +81,7 @@ export default function PinMap(){
                                 </Link> */}
 
                                 <Link to={{
-                                            pathname:'/forestAdmin/createForest',
+                                            pathname:'/systemAdmin/createForest',
                                             state: {name, district, country, newPlace}  
                                 }}>
                                     <button className="submitButton" type="submit">Add Pin</button>

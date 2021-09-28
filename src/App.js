@@ -5,8 +5,8 @@ import RegisterForm from './components/registerForm';
 import Topbar from './components/topBar/Topbar';
 import Sidebar from './components/sidebar/sidebar';
 import User from './views/forestAdmin/user';
-import RenderMap from './views/forestAdmin/map';
-import PinMap from './views/forestAdmin/pinMap';
+import RenderMap from './views/systemAdmin/map';
+import PinMap from './views/systemAdmin/pinMap';
 import ForestOfficerSidebar from './views/forestOfficer/sidebar';
 import ForestOfficerTopbar from './views/forestOfficer/topbar';
 import AssignForests from './views/forestOfficer/assisgnForests';
@@ -16,6 +16,7 @@ import NewForestAdmin from './views/systemAdmin/users';
 import NewForestOfficer from './views/forestAdmin/newForestOfficer';
 import ForestOfficerList from './views/forestAdmin/users';
 import UpdateForestOfficer from './views/forestOfficer/updateForestOfficer';
+import RestrictionLevels from './views/forestAdmin/restrictionLevels';
 import './App.css';
 
 function App() {
@@ -72,20 +73,29 @@ function App() {
               </div>
             </div>
           } />
-          <Route path='/forestAdmin/createForest' render={props =>
+          <Route path='/forestAdmin/restrictionLevels' render={props =>
             <div>
               <Topbar />
               <div className="containers">
                 <Sidebar />
+                <RestrictionLevels/>
+              </div>
+            </div>
+          } />
+          <Route path='/systemAdmin/createForest' render={props =>
+            <div>
+              <SystemAdminTopbar />
+              <div className="containers">
+                <SystemAdminSidebar />
                 <RenderMap />
               </div>
             </div>
           } />
-          <Route path='/forestAdmin/pinMap' render={props =>
+          <Route path='/systemAdmin/pinMap' render={props =>
             <div>
-              <Topbar />
+              <SystemAdminTopbar />
               <div className="containers">
-                <Sidebar />
+                <SystemAdminSidebar />
                 <PinMap />
               </div>
             </div>

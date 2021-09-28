@@ -8,7 +8,7 @@ export default function Sidebar(){
             <div className="sidebarWrapper">
                 <div className="siderbarMenu">
 
-                    <h3 className="sidebarTitle">Dashboard</h3>
+                    {/* <h3 className="sidebarTitle">Dashboard</h3>
                     <ul className="sidebarList">
                         <Link to="/forestAdmin/pinMap">
                             <li className="sidebarListItem active">
@@ -16,9 +16,9 @@ export default function Sidebar(){
                                 Register Forest
                             </li>
                         </Link>
-                    </ul>
+                    </ul> */}
 
-                    <h3 className="sidebarTitle">Quick Menu</h3>
+                    <h3 className="sidebarTitle">Dashboard</h3>
                     <ul className="sidebarList">
                         <Link to="/forestAdmin/users">
                             <li className="sidebarListItem active">
@@ -30,6 +30,12 @@ export default function Sidebar(){
                             <li className="sidebarListItem active">
                                 <Assessment className="sidebarIcon"/>
                                 New Forest Officer
+                            </li>
+                        </Link>
+                        <Link to="/forestAdmin/restrictionLevels">
+                            <li className="sidebarListItem active">
+                                <Assessment className="sidebarIcon"/>
+                                Add Restriction Levels
                             </li>
                         </Link>
                     </ul>

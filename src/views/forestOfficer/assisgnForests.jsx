@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
 import { Map, TileLayer, Rectangle, Popup} from 'react-leaflet';
-import osm from '../forestAdmin/osmProvider';
+import osm from '../systemAdmin/osmProvider';
 import '../../style/map.css';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-draw/dist/leaflet.draw.css';
@@ -23,7 +23,7 @@ export default function AssignForest(){
     const [currentPlaceId, setCurrentPlaceId] = useState(null);
     const [forestName, setForestName] = useState();
     const [saveTime, setSaveTime] = useState(null);
-    const [image, setImage] = useState();
+    const [image, setImage] = useState('');
     const [selectedImage, setSelectedImage] = useState("none");
     const [inferedThreatPresent, setInferedThreatPresent] = useState([]);
 
