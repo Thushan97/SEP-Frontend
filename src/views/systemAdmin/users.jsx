@@ -86,7 +86,7 @@ export default function NewUser(){
 
                 <div className="newUserItem">
                     <label>Forest Name</label>
-                    <select className="newUserSelect" name="active" id="active" onChange={(e) => setForestId(e.target.value)}>
+                    <select className="newForestSelect" name="active" id="active" onChange={(e) => setForestId(e.target.value)}>
                         <option value="none">None</option>
                         {forestDetails.map((forest) => 
                             <option key={forest._id} value={forest._id}>{forest.forest_name}</option>  

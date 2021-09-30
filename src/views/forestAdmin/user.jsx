@@ -64,18 +64,19 @@ export default function User(){
                             <input type="text" placeholder="Forest Name" value={forestName} onChange={(e) => setForestName(e.target.value)}/>
                         </div>
 
-                        <div className="userUpdateRight">
-                            <button className="userUpdateButton">Update</button>
-                        </div>
-
-                        <div className="newUserItem">
+                        {/* <div className="newUserItem">
                             <label>Status</label>
                             <select className="newUserSelect" name="active" id="active">
                                 <option value="new">New</option>
                                 <option value="active">Active</option>
                                 <option value="deactive">Deactive</option>
                             </select>
+                        </div> */}
+
+                        <div className="userUpdateRight">
+                            <button className="userUpdateButton">Update</button>
                         </div>
+
                     </form>
                 </div>
             </div>

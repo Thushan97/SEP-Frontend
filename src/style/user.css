@@ -117,3 +117,8 @@
     color: white;
     font-weight: 600;
 }
+
+.newUserSelect {
+    height: 50px;
+    border-radius: 5px;
+}

@@ -19,6 +19,7 @@ export default function RestictionLevels(){
     const [newPlace, setNewPlace] = useState(null);
     const [restriction, setRestriction] = useState('');
     const [forestId, setForestId] = useState('');
+    const [subAreas, setSubAreas] = useState([]);
     const ZOOM_LEVEL = 9;
     const mapRef = useRef();
 
@@ -31,10 +32,16 @@ export default function RestictionLevels(){
             setForestId(response.data.forest_id);
             const result = await api.forestAdmin.getForestArea(response.data.forest_id);
             setCoordinates(result.data.boundary.features[0].geometry.coordinates);
-            console.log(result.data.boundary.features[0].geometry.coordinates)
+            setSubAreas(result.data.sub_areas)
+            //console.log(result.data.boundary.features[0].geometry.coordinates)
         }
         getForestId();
     },[])
+
+    // if(subAreas[0].sub_area[0]){
+    //     console.log(subAreas[0].sub_area[0].latlngs)
+    // }
+    
 
     
     const arrayMap = () => {
@@ -66,7 +73,7 @@ export default function RestictionLevels(){
 
     }; 
 
-    console.log(mapLayers)
+    // console.log(mapLayers)
 
     const handleAddClick = (e) => {
         //console.log(e.latlng);
@@ -74,14 +81,16 @@ export default function RestictionLevels(){
         setNewPlace({lng, lat});
     }
 
-    const handleClick = async (e) => {
+    const handleClick = async () => {
         
         try{
             const data = {
                 "sub_area" : mapLayers,
-                "restriction_level" : restriction
+                "restriction_level" : restriction,
+                "forest_id" : forestId
             }
-            const response = await api.forestAdmin.addRestrictionAreas(data,forestId); 
+            //console.log(data);
+            const response = await api.forestAdmin.addRestrictionAreas(data); 
             if(response.status === 200){
                 toast.success("Restriction Area Added Successfully");
             }
@@ -97,6 +106,10 @@ export default function RestictionLevels(){
             <Map center = {center} zoom = {ZOOM_LEVEL} ref = {mapRef} ondblclick={handleAddClick} doubleClickZoom={false}>
                 <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution}/>
                 { coordinates[0] && (<Polygon color="magenta" positions={arrayMap()} />)}
+                { subAreas.map((i,index) => {
+                    console.log([i.sub_area[0].latlngs])
+                    return (subAreas && (<Polygon key={index} positions={[i.sub_area[0].latlngs]}/>))                     
+                })}
                 <FeatureGroup>
                     <EditControl position="topright" onCreated={_onCreate}
                         draw={{
@@ -109,16 +122,17 @@ export default function RestictionLevels(){
                 </FeatureGroup>
                 {newPlace && (
                     <Popup position={newPlace} >
-                        <div className="card">
-                            <form className="detailsForm">
+                        <div className="card1">
+                            <form className="detailsForm1">
                             <label><h5>Restriction Level</h5></label>
-                                <select className="newUserSelect" name="active" id="active" onChange={(e) => setRestriction(e.target.value)}>
+                                <select className="newUserSelect1" name="active" id="active" onChange={(e) => setRestriction(e.target.value)}>
+                                    <option value="none">None</option>
                                     <option value="public_visit_area">Public Visit Areas</option>
                                     <option value="camping_area">Camping Areas</option>
                                     <option value="restricted_area">Restricted Areas</option>
                                     <option value="highly_restricted_area">Highly Restricted Areas</option>
                                 </select>
-                                <button className="submitButton" type="submit" onClick={handleClick}>Add Restriction</button>
+                                <button className="submitButton1" type="submit" onClick={handleClick}>Add Restriction</button>
                             </form>    
                         </div>
                     </Popup>

@@ -37,8 +37,8 @@ export const api = {
         getForestArea: async (data) => {
             return await getInstance().get(`forest/area/${data}`);
         },
-        addRestrictionAreas: async (data, forestId) => {
-            return await getInstance().post(`forest/area/${forestId}`,data)
+        addRestrictionAreas: async (data) => {
+            return await getInstance().post(`forest/area/${data.forest_id}`,data)
         } 
 
     },
