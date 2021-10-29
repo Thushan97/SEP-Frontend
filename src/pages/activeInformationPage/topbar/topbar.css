@@ -1,0 +1,35 @@
+.topActive{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    font-family: 'Josefin Sans, sans-serif';
+}
+
+.topLeftActive,.topRightActive {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topCenterActive{
+    flex: 6;
+}
+
+.topIconActive{
+    font-size: 20px;
+    margin-right: 10px;
+    color: #444;
+    cursor: pointer;
+}
+
+.topSearchIconActive{
+    margin-left: -1400px;
+    font-size: 18px;
+    color: #666;
+    cursor: pointer;
+}

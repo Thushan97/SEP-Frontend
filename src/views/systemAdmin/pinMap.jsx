@@ -15,6 +15,7 @@ export default function PinMap(){
     const [name, setName] = useState(null);
     const [district, setDistrict] = useState(null);
     const [country, setCountry] = useState(null);
+
     const ZOOM_LEVEL = 9;
     const mapRef = useRef();
 
@@ -27,13 +28,23 @@ export default function PinMap(){
         "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png",
     shadowUrl:
         "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png",
-    });
+    }); 
 
     const handleAddClick = (e) => {
         //console.log(e.latlng);
         const {lng, lat} = e.latlng;
         setNewPlace({lng, lat});
+
+        // fetch('https://geolocation-db.com/json/d802faa0-10bd-11ec-b2fe-47a0872c6708')
+        fetch(`http://api.geonames.org/countryCodeJSON?lat=${lat}&lng=${lng}&username=banduwgs`)
+        .then( response => response.json())
+        .then( data => setCountry(data.countryName) );
+        console.log(country);
+        
     }
+
+    
+    console.log(country);
 
     // const handleSubmit = async (e) => {
     //     e.preventDefault();
@@ -74,7 +85,8 @@ export default function PinMap(){
                                 <label className="details">District</label>
                                 <input className="detailsInput" placeholder="Enter District" onChange={(e) => setDistrict(e.target.value)}/>
                                 <label className="details">Country</label>
-                                <input className="detailsInput" placeholder="Enter Country" onChange={(e) => setCountry(e.target.value)}/>
+                                {country && (<h6 className="place">{country}</h6>)}
+                                {/* <input className="detailsInput" placeholder="Enter Country" onChange={(e) => setCountry(e.target.value)}/> */}
                                 
                                 {/* <Link to={`/forestAdmin/createForest/${name}`}>
                                     <button className="submitButton" type="submit">Add Pin</button>

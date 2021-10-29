@@ -28,12 +28,12 @@ export default function ForestOfficerList(){
           width: 150,
           editable: true,
         },
-        {
-          field: 'forest_name',
-          headerName: 'Forest Name',
-          width: 160,
-          editable: true,
-        },
+        // {
+        //   field: 'forest_name',
+        //   headerName: 'Forest Name',
+        //   width: 160,
+        //   editable: true,
+        // },
         {
           field: 'phone',
           headerName: 'Telephone',

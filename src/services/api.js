@@ -77,5 +77,14 @@ export const api = {
         getForestNamesAndIds: async () => {
             return await getInstance().get('forest/forestNames');
         }
+    },
+
+    activeInformationPage : {
+        getPosts : async () => {
+            return await getInstance().get('/forestpage');
+        },
+        getSinglePost : async (data) => {
+            return await getInstance().get(`forestpage/d/${data}`);
+        }
     }
 }

@@ -106,8 +106,7 @@ export default function RestictionLevels(){
             <Map center = {center} zoom = {ZOOM_LEVEL} ref = {mapRef} ondblclick={handleAddClick} doubleClickZoom={false}>
                 <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution}/>
                 { coordinates[0] && (<Polygon color="magenta" positions={arrayMap()} />)}
-                { subAreas.map((i,index) => {
-                    console.log([i.sub_area[0].latlngs])
+                { subAreas && subAreas.map((i,index) => {
                     return (subAreas && (<Polygon key={index} positions={[i.sub_area[0].latlngs]}/>))                     
                 })}
                 <FeatureGroup>

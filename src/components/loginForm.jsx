@@ -24,8 +24,9 @@ class LoginForm extends Form {
 
     doSubmit = async () =>{
         try{
+            console.log(this.state.data);
             const response = await api.auth.login(this.state.data);
-            //console.log(response.data.access_token);
+            console.log(response.data.access_token);
             localStorage.setItem("token", response.data.auth_token);
             localStorage.setItem("email", response.data.info.email)
             console.log(localStorage.getItem("email"));

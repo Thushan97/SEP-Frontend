@@ -17,6 +17,11 @@ import NewForestOfficer from './views/forestAdmin/newForestOfficer';
 import ForestOfficerList from './views/forestAdmin/users';
 import UpdateForestOfficer from './views/forestOfficer/updateForestOfficer';
 import RestrictionLevels from './views/forestAdmin/restrictionLevels';
+import ActiveTopbar from './pages/activeInformationPage/topbar/topbar';
+import ActiveHeader from './pages/activeInformationPage/header/header';
+import Posts from './pages/activeInformationPage/posts/posts';
+import Single from './pages/activeInformationPage/single/single';
+import AddForestDetails from './views/forestOfficer/AddForestDetails';
 import './App.css';
 
 function App() {
@@ -24,8 +29,8 @@ function App() {
   return (
     <React.Fragment>
         <Switch>
-          <Route path="/login" component={LoginForm}></Route>
-          <Route path="/register" component={RegisterForm}></Route>
+          <Route exact path="/login" component={LoginForm}></Route>
+          <Route exact path="/register" component={RegisterForm}></Route>
 
           <Route exact path='/systemAdmin' render={props =>
             <div>
@@ -46,7 +51,7 @@ function App() {
               </div>
             </div>
           } />
-          <Route path='/forestAdmin/users' render={props =>
+          <Route exact path='/forestAdmin/users' render={props =>
             <div>
               <Topbar />
               <div className="containers">
@@ -64,7 +69,7 @@ function App() {
               </div>
             </div>
           } />
-          <Route path='/forestAdmin/newForestOfficer' render={props =>
+          <Route exact path='/forestAdmin/newForestOfficer' render={props =>
             <div>
               <Topbar />
               <div className="containers">
@@ -73,7 +78,7 @@ function App() {
               </div>
             </div>
           } />
-          <Route path='/forestAdmin/restrictionLevels' render={props =>
+          <Route exact path='/forestAdmin/restrictionLevels' render={props =>
             <div>
               <Topbar />
               <div className="containers">
@@ -82,7 +87,7 @@ function App() {
               </div>
             </div>
           } />
-          <Route path='/systemAdmin/createForest' render={props =>
+          <Route exact path='/systemAdmin/createForest' render={props =>
             <div>
               <SystemAdminTopbar />
               <div className="containers">
@@ -91,7 +96,7 @@ function App() {
               </div>
             </div>
           } />
-          <Route path='/systemAdmin/pinMap' render={props =>
+          <Route exact path='/systemAdmin/pinMap' render={props =>
             <div>
               <SystemAdminTopbar />
               <div className="containers">
@@ -111,7 +116,7 @@ function App() {
             </div>
           } />
 
-          <Route path='/forestOfficer/update' render={props => 
+          <Route exact path='/forestOfficer/update' render={props => 
             <div>
               <ForestOfficerTopbar/>
               <div className="containers">
@@ -120,6 +125,22 @@ function App() {
               </div>
             </div>
           } />
+          
+          <Route exact path="/forestOfficer/addForestDetails" component={AddForestDetails}></Route>
+  
+          <Route exact path='/activeInformationPage' render={props => 
+            <div>
+              <ActiveTopbar/>
+              <div className="containers">
+                <ActiveHeader/>
+              </div>
+              <div>
+                <Posts />
+              </div>
+            </div>
+          } />
+
+          <Route exact path="/activeInformationPage/post/:postId" component={Single}></Route>
 
           <Redirect to="/login" /> 
         </Switch>       

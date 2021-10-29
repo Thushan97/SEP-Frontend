@@ -26,6 +26,7 @@ export default function AssignForest(){
     const [image, setImage] = useState('');
     const [selectedImage, setSelectedImage] = useState("none");
     const [inferedThreatPresent, setInferedThreatPresent] = useState([]);
+    const [maskPresent, setMaskPresent] = useState('');
 
     useEffect(() => {
         async function getTiles(){
@@ -92,6 +93,9 @@ export default function AssignForest(){
             if(response.data.infered_threat_present){
                 setInferedThreatPresent(response.data.infered_threat_present);
             }
+            if(response.data.mask_present){
+                setMaskPresent(response.data.mask_present);
+            }
             
         }
         catch(ex){
@@ -135,13 +139,16 @@ export default function AssignForest(){
                                 <h5 className="place">{forestName}</h5>
                                 <label className="details">Tile Number</label>
                                 <h5 className="place">{currentPlaceId}</h5>
-                                <label className="details">Tile Updated Date Time</label>
-                                <h5 className="place">{saveTime}</h5>
-                                <label className="details">InferedThreatPresent</label>
-                                <h5 className="place">{inferedThreatPresent}</h5>
+                                <label className="details">Inference Updated Date</label>
+                                <h5 className="place">{new Date(saveTime).toDateString()}</h5>
+                                <label className="details">Infered Threat Present</label>
+                                {inferedThreatPresent && (inferedThreatPresent.map((i,index) => 
+                                    <h5 key={index} className="place">{i}</h5>
+                                ))}
+                                
                                 {/* <label className="details">Sattelite Image</label>
                                 { image && (<img src={`http://127.0.0.1:5000/forest/get_tile_view/${image}/rgb`} style={{ width: 300, height: 190 }}/>)} */}
-                                <label className="details">Image Type</label>
+                                <label className="details">Index Type</label>
                                 <select className="custom-select" onChange={(e) => {
                                     const selectedType = e.target.value
                                     setSelectedImage(selectedType)
@@ -154,10 +161,10 @@ export default function AssignForest(){
                                     <option value="vari">VARI</option>
                                     <option value="savi">SAVI</option>
                                     <option value="nvdi">NDVI</option>
-                                    <option value="masked_rgb">Masked RGB</option>
+                                    {maskPresent && (<option value="masked_rgb">Masked RGB</option>)}    
                                 </select>
-                                <label className="details">Image</label>
-                                {selectedImage !== "none" && (<img src={`http://127.0.0.1:5000/forest/get_tile_view/${image}/${selectedImage}`} style={{ width: 300, height: 500 }} alt=""/>)}
+                                <label className="details">Index</label>
+                                {selectedImage !== "none" && (<img src={`http://127.0.0.1:5000/forest/get_tile_view/${image}/${selectedImage}`} style={{ width: 300, height: 600 }} alt=""/>)}
                         </div>
                     </Popup>
                 )}

@@ -102,6 +102,8 @@ export default function RenderMap(props){
             }
         }
 
+        console.log(newForest);
+
         try{
             const response = await api.forestAdmin.registerForest(newForest);
             console.log(response);

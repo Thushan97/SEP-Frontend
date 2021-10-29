@@ -1,5 +1,5 @@
 import '../../style/user.css';
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import Joi from 'joi-browser';
 import { schema } from '../../validations/updateForestOfficer';
@@ -12,6 +12,16 @@ export default function User(){
     let location = useLocation();
     const [username, setUsername] = useState('');
     const [forestName, setForestName] = useState('');
+    const [forestId, setForestId] = useState('');
+    const [forestDetails, setForestDetails] = useState([]);
+
+    useEffect(() => {
+        async function getForestNames(){
+            const response = await api.systemAdmin.getForestNamesAndIds();
+            setForestDetails(response.data);
+        }
+        getForestNames();
+    }, [])
 
     const handleSubmit = async (e) => {
 
@@ -20,7 +30,7 @@ export default function User(){
         const data = {
             "oldUsername" : location.state.username,
             "username" : username,
-            "forest_name" : forestName,
+            "forest_id" : forestId,
         }
 
         console.log(data);
@@ -34,6 +44,7 @@ export default function User(){
                 if(response.status === 200){
                     setUsername('');
                     setForestName('');
+                    setForestId('');
                     toast.success("Forest Officer Updated Successfully.");
                 }          
             } else{
@@ -59,19 +70,20 @@ export default function User(){
                             <input type="email" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                         </div>
 
-                        <div className="newUserItem">
+                        {/* <div className="newUserItem">
                             <label>Forest Name</label>
                             <input type="text" placeholder="Forest Name" value={forestName} onChange={(e) => setForestName(e.target.value)}/>
-                        </div>
-
-                        {/* <div className="newUserItem">
-                            <label>Status</label>
-                            <select className="newUserSelect" name="active" id="active">
-                                <option value="new">New</option>
-                                <option value="active">Active</option>
-                                <option value="deactive">Deactive</option>
-                            </select>
                         </div> */}
+
+                        <div className="newUserItem">
+                            <label>Forest Name</label>
+                            <select className="newForestSelect" name="active" id="active" onChange={(e) => setForestId(e.target.value)}>
+                                <option value="none">None</option>
+                                {forestDetails.map((forest) => 
+                                <option key={forest._id} value={forest._id}>{forest.forest_name}</option>  
+                                )}
+                            </select>
+                        </div>
 
                         <div className="userUpdateRight">
                             <button className="userUpdateButton">Update</button>

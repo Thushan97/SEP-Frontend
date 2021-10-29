@@ -23,28 +23,22 @@ export default function Sidebar(){
                         <Link to="/forestOfficer/update">
                             <li className="sidebarListItem active">
                                 <Group className="sidebarIcon"/>
-                                Upadate Account
+                                Update Account
                             </li>
                         </Link>
+
+                        <Link to="/forestOfficer/addForestDetails">
+                            <li className="sidebarListItem active">
+                                <Assessment className="sidebarIcon"/>
+                                Add Forest Details
+                            </li>
+                        </Link>
+                        
                         <li className="sidebarListItem active">
                             <Assessment className="sidebarIcon"/>
-                            Reports
+                            Update Forest Details
                         </li>
                     </ul>
-
-                    <h3 className="sidebarTitle">Notifications</h3>
-                    <ul className="sidebarList">
-                        <li className="sidebarListItem active">
-                            <Feedback className="sidebarIcon"/>
-                            Feedback
-                        </li>
-
-                        <li className="sidebarListItem active">
-                            <Chat className="sidebarIcon"/>
-                            Messages
-                        </li>
-                    </ul>
-
                 </div>
             </div>
         </div>
