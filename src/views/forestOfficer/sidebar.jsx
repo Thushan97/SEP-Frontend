@@ -34,10 +34,6 @@ export default function Sidebar(){
                             </li>
                         </Link>
                         
-                        <li className="sidebarListItem active">
-                            <Assessment className="sidebarIcon"/>
-                            Update Forest Details
-                        </li>
                     </ul>
                 </div>
             </div>

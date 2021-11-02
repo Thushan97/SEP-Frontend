@@ -29,34 +29,6 @@ export default function Sidebar(){
                             </li>
                         </Link>
                     </ul>
-
-                    <h3 className="sidebarTitle">Quick Menu</h3>
-                    <ul className="sidebarList">
-                        {/* <Link to="/forestAdmin/users">
-                            <li className="sidebarListItem active">
-                                <Group className="sidebarIcon"/>
-                                Users
-                            </li>
-                        </Link> */}
-                        <li className="sidebarListItem active">
-                            <Assessment className="sidebarIcon"/>
-                            Reports
-                        </li>
-                    </ul>
-
-                    <h3 className="sidebarTitle">Notifications</h3>
-                    <ul className="sidebarList">
-                        <li className="sidebarListItem active">
-                            <Feedback className="sidebarIcon"/>
-                            Feedback
-                        </li>
-
-                        <li className="sidebarListItem active">
-                            <Chat className="sidebarIcon"/>
-                            Messages
-                        </li>
-                    </ul>
-
                 </div>
             </div>
         </div>

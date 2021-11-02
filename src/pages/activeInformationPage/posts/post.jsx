@@ -7,6 +7,7 @@ export default function Post({post}){
     // setPostId(post._id);
     const postId = post._id;
     const forestName = post.forest_name;
+    const forestImg = post.forest_image;
     return(
         <div className="post">
             <img

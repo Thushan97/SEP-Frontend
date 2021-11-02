@@ -67,6 +67,12 @@ export const api = {
         },
         updateDetails: async (data) => {
             return await getInstance().post('user/forestOfficer/update', data);
+        },
+        getForestNameById: async (data) => {
+            return await getInstance().get(`forest/get_forest_name/${data}`);
+        },
+        addForestDetails: async (data) => {
+            return await getInstance().post('forest/add_forest_details', data);
         }
     },
 
