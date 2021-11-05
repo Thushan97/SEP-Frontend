@@ -22,15 +22,22 @@ import ActiveHeader from './pages/activeInformationPage/header/header';
 import Posts from './pages/activeInformationPage/posts/posts';
 import Single from './pages/activeInformationPage/single/single';
 import AddForestDetails from './views/forestOfficer/AddForestDetails';
+import NotFound from './pages/notFound/NotFound';
 import './App.css';
 
+
 function App() {
+
+  const user = localStorage.getItem("user");
+  console.log(user);
 
   return (
     <React.Fragment>
         <Switch>
-          <Route exact path="/login" component={LoginForm}></Route>
+          
+          <Route path="/login" component={LoginForm}></Route>
           <Route exact path="/register" component={RegisterForm}></Route>
+          <Route exact path="/notFound" component={NotFound}></Route>
 
           <Route exact path='/systemAdmin' render={props =>
             <div>
@@ -41,7 +48,7 @@ function App() {
               </div>
             </div>
           } />
-
+          
           <Route exact path='/forestAdmin' render={props =>
             <div>
               <Topbar />
@@ -51,6 +58,7 @@ function App() {
               </div>
             </div>
           } />
+
           <Route exact path='/forestAdmin/users' render={props =>
             <div>
               <Topbar />
@@ -60,6 +68,7 @@ function App() {
               </div>
             </div>
           } />
+
           <Route path='/forestAdmin/user' render={props =>
             <div>
               <Topbar />
@@ -69,6 +78,7 @@ function App() {
               </div>
             </div>
           } />
+
           <Route exact path='/forestAdmin/newForestOfficer' render={props =>
             <div>
               <Topbar />
@@ -78,6 +88,7 @@ function App() {
               </div>
             </div>
           } />
+
           <Route exact path='/forestAdmin/restrictionLevels' render={props =>
             <div>
               <Topbar />
@@ -87,6 +98,7 @@ function App() {
               </div>
             </div>
           } />
+
           <Route exact path='/systemAdmin/createForest' render={props =>
             <div>
               <SystemAdminTopbar />
@@ -96,6 +108,7 @@ function App() {
               </div>
             </div>
           } />
+
           <Route exact path='/systemAdmin/pinMap' render={props =>
             <div>
               <SystemAdminTopbar />
@@ -142,7 +155,8 @@ function App() {
 
           <Route exact path="/activeInformationPage/post/:postId" component={Single}></Route>
 
-          <Redirect to="/login" /> 
+          <Redirect to="/login" />  
+          
         </Switch>       
     </React.Fragment>  
   );

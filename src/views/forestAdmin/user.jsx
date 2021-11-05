@@ -11,7 +11,7 @@ toast.configure();
 export default function User(){
     let location = useLocation();
     const [username, setUsername] = useState('');
-    const [forestName, setForestName] = useState('');
+    // const [forestName, setForestName] = useState('');
     const [forestId, setForestId] = useState('');
     const [forestDetails, setForestDetails] = useState([]);
 
@@ -43,7 +43,7 @@ export default function User(){
                 const response = await api.forestAdmin.updateForestOfficer(data);
                 if(response.status === 200){
                     setUsername('');
-                    setForestName('');
+                    // setForestName('');
                     setForestId('');
                     toast.success("Forest Officer Updated Successfully.");
                 }          

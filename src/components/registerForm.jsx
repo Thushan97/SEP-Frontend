@@ -25,7 +25,7 @@ class RegisterForm extends Form {
     doSubmit = async () =>{
         // call the server
         try{
-            const response = await api.auth.register(this.state.data);
+            await api.auth.register(this.state.data);
             // sessionStorage.setItem("token", response.data.access_token);
             // console.log(response.data.access_token);
             // registerAccessToken(response.data.access_token);

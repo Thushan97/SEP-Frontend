@@ -92,7 +92,7 @@ export default function ForestOfficerList(){
         const email = {
           "email": username
         }
-        const result = await api.forestAdmin.deleteForestOfficer(email);
+        await api.forestAdmin.deleteForestOfficer(email);
        
         setData(data.filter((item) => item.username !== username));
       }

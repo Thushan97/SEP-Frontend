@@ -18,6 +18,7 @@ export default function Topbar() {
         await api.auth.logout(data);
         localStorage.removeItem("email");
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         history.push('/login');
     }
 
