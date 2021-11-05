@@ -164,7 +164,7 @@ export default function AssignForest(){
                                     {maskPresent && (<option value="masked_rgb">Masked RGB</option>)}    
                                 </select>
                                 <label className="details">Index</label>
-                                {selectedImage !== "none" && (<img src={`http://127.0.0.1:5000/forest/get_tile_view/${image}/${selectedImage}`} style={{ width: 300, height: 600 }} alt=""/>)}
+                                {selectedImage !== "none" && (<img src={`https://defom-api.herokuapp.com/forest/get_tile_view/${image}/${selectedImage}`} style={{ width: 300, height: 600 }} alt=""/>)}
                         </div>
                     </Popup>
                 )}

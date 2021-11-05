@@ -34,7 +34,7 @@ export default function SinglePost(){
             <div className="singlePostWrapper">
                 
                 <img 
-                    src = {`http://127.0.0.1:5000/forestpage/i/${forestId}`}
+                    src = {`https://defom-api.herokuapp.com/forestpage/i/${forestId}`}
                     alt=""
                     className="singlePostImg"
                 /> 

@@ -41,8 +41,9 @@ export default function RestictionLevels(){
     // if(subAreas[0].sub_area[0]){
     //     console.log(subAreas[0].sub_area[0].latlngs)
     // }
-    
-
+    if(subAreas){
+        console.log(subAreas);
+    }
     
     const arrayMap = () => {
         if(coordinates[0]){
@@ -89,7 +90,7 @@ export default function RestictionLevels(){
                 "restriction_level" : restriction,
                 "forest_id" : forestId
             }
-            //console.log(data);
+            console.log(data);
             const response = await api.forestAdmin.addRestrictionAreas(data); 
             if(response.status === 200){
                 toast.success("Restriction Area Added Successfully");
