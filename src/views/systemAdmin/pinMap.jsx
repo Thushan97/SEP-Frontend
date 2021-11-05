@@ -36,10 +36,10 @@ export default function PinMap(){
         setNewPlace({lng, lat});
 
         // fetch('https://geolocation-db.com/json/d802faa0-10bd-11ec-b2fe-47a0872c6708')
-        fetch(`http://api.geonames.org/countryCodeJSON?lat=${lat}&lng=${lng}&username=banduwgs`)
-        .then( response => response.json())
-        .then( data => setCountry(data.countryName) );
-        console.log(country);
+        // fetch(`http://api.geonames.org/countryCodeJSON?lat=${lat}&lng=${lng}&username=banduwgs`)
+        // .then( response => response.json())
+        // .then( data => setCountry(data.countryName) );
+        // console.log(country);
         
     }
 
@@ -85,8 +85,7 @@ export default function PinMap(){
                                 <label className="details">District</label>
                                 <input className="detailsInput" placeholder="Enter District" onChange={(e) => setDistrict(e.target.value)}/>
                                 <label className="details">Country</label>
-                                {country && (<h6 className="place">{country}</h6>)}
-                                {/* <input className="detailsInput" placeholder="Enter Country" onChange={(e) => setCountry(e.target.value)}/> */}
+                                <input className="detailsInput" placeholder="Enter Country" onChange={(e) => setCountry(e.target.value)}/>
                                 
                                 {/* <Link to={`/forestAdmin/createForest/${name}`}>
                                     <button className="submitButton" type="submit">Add Pin</button>
